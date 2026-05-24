@@ -11,56 +11,60 @@
 
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Inter, Arial, Helvetica, sans-serif;
         }
     </style>
 </head>
 
-<body class="bg-[#2b1740] text-white min-h-screen">
+<body class="bg-zinc-950 text-zinc-100 min-h-screen">
 
     <!-- LOGIN -->
     <section id="loginScreen" class="min-h-screen flex items-center justify-center p-6">
 
-        <div class="bg-[#3a2359] w-full max-w-md p-8 rounded-3xl border border-purple-800 shadow-2xl">
+        <div class="bg-zinc-900 w-full max-w-md p-8 rounded-3xl border border-zinc-800 shadow-2xl">
 
-            <h1 class="text-4xl font-bold mb-2 text-center">
+            <h1 class="text-4xl font-bold mb-2 text-center tracking-tight">
                 FocusFlow
             </h1>
 
-            <p class="text-zinc-400 text-center mb-8">
+            <p class="text-zinc-300 text-center mb-8">
                 Plataforma Anti-Procrastinação
             </p>
 
-            <!-- Usuário -->
-            <input id="username" type="text" placeholder="Usuário" class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-4 outline-none focus:border-emerald-400" />
+            <input id="username" type="text" placeholder="Usuário"
+                class="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-4 mb-4 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
 
-            <!-- Senha -->
-            <input id="password" type="password" placeholder="Senha" class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-6 outline-none focus:border-emerald-400" />
+            <input id="password" type="password" placeholder="Senha"
+                class="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-4 mb-6 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
 
-            <!-- Meta -->
             <div class="mb-6">
 
                 <label class="block text-zinc-300 mb-2">
                     Qual sua meta diária de foco?
                 </label>
 
-                <select id="dailyGoal" class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-4 outline-none focus:border-emerald-400">
+                <select id="dailyGoal"
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-4 text-zinc-100 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+
                     <option value="60">1 hora</option>
                     <option value="120">2 horas</option>
                     <option value="180">3 horas</option>
                     <option value="240" selected>4 horas</option>
                     <option value="300">5 horas</option>
                     <option value="360">6 horas</option>
+
                 </select>
 
             </div>
 
-            <!-- Botão -->
-            <button onclick="login()" class="w-full bg-emerald-500 hover:bg-emerald-400 transition text-black font-bold py-4 rounded-xl">
+            <button onclick="login()"
+                class="w-full bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all duration-200 text-black font-semibold py-4 rounded-xl shadow-lg shadow-emerald-500/10">
+
                 Entrar
+
             </button>
 
-            <p class="text-center text-zinc-500 mt-6 text-sm">
+            <p class="text-center text-zinc-400 mt-6 text-sm">
                 Login fake • nenhum dado é salvo
             </p>
 
@@ -71,48 +75,68 @@
     <!-- DASHBOARD -->
     <section id="dashboard" class="hidden">
 
-        <!-- Navbar -->
-        <header class="bg-[#3a2359] border-b border-purple-900 px-8 py-4 flex items-center justify-between">
+        <!-- NAVBAR -->
+        <header
+            class="bg-zinc-900 border-b border-zinc-800 px-8 py-4 flex items-center justify-between flex-wrap gap-4">
 
             <div>
-                <h1 class="text-2xl font-bold">
+
+                <h1 class="text-2xl font-bold tracking-tight">
                     FocusFlow
                 </h1>
 
                 <p class="text-sm text-zinc-300">
                     Bem-vindo, <span id="userDisplay">Usuário</span>
                 </p>
+
             </div>
 
-            <button onclick="logout()" class="bg-red-500 hover:bg-red-400 transition px-5 py-2 rounded-xl text-black font-semibold">
-                Logout
-            </button>
+            <div class="flex gap-3 flex-wrap">
+
+                <button onclick="showSubjects()"
+                    class="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 transition px-5 py-2 rounded-xl text-zinc-200 font-medium">
+
+                    Matérias
+
+                </button>
+
+                <button onclick="logout()"
+                    class="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 transition px-5 py-2 rounded-xl text-zinc-200 font-medium">
+
+                    Logout
+
+                </button>
+
+            </div>
 
         </header>
 
-        <!-- Conteúdo -->
+        <!-- CONTEÚDO -->
         <main class="p-8">
 
-            <!-- Cards -->
-            <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+            <!-- CARDS -->
+            <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
 
-                <!-- Pomodoro -->
-                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <!-- MINI TIMER -->
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
+
                     <p class="text-zinc-300 text-sm mb-2">
                         Sessão Atual
                     </p>
 
-                    <h2 id="miniTimer" class="text-4xl font-bold text-emerald-400">
+                    <h2 id="miniTimer" class="text-2xl font-semibold text-emerald-400">
                         25:00
                     </h2>
 
-                    <p class="mt-2 text-zinc-400">
+                    <p class="mt-2 text-zinc-300">
                         Pomodoro ativo
                     </p>
+
                 </div>
 
-                <!-- Foco -->
-                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <!-- FOCO -->
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
+
                     <p class="text-zinc-300 text-sm mb-2">
                         Foco Hoje
                     </p>
@@ -121,34 +145,20 @@
                         0h
                     </h2>
 
-                    <p class="mt-2 text-zinc-400">
+                    <p class="mt-2 text-zinc-300">
                         Tempo acumulado
                     </p>
+
                 </div>
 
-                <!-- Travamentos -->
-                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-                    <p class="text-zinc-300 text-sm mb-2">
-                        Travamentos Detectados
-                    </p>
-
-                    <h2 id="travamentos" class="text-4xl font-bold text-yellow-400">
-                        0
-                    </h2>
-
-                    <p class="mt-2 text-zinc-400">
-                        Sistema inteligente
-                    </p>
-                </div>
-
-                <!-- Meta -->
-                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <!-- META -->
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
 
                     <p class="text-zinc-300 text-sm mb-2">
                         Meta Diária
                     </p>
 
-                    <p id="goalText" class="text-zinc-500 text-sm">
+                    <p id="goalText" class="text-zinc-400 text-sm">
                         0h / 4h
                     </p>
 
@@ -156,110 +166,172 @@
                         0%
                     </h2>
 
-                    <div class="w-full bg-zinc-700 rounded-full h-3 mt-4">
-                        <div id="goalBar" class="bg-cyan-400 h-3 rounded-full w-0 transition-all duration-500"></div>
+                    <div class="w-full bg-zinc-800 rounded-full h-3 mt-4 overflow-hidden">
+
+                        <div id="goalBar"
+                            class="bg-cyan-400 h-3 rounded-full w-0 transition-all duration-500">
+
+                        </div>
+
                     </div>
+
                 </div>
 
             </section>
 
-            <!-- Área principal -->
+            <!-- ÁREA PRINCIPAL -->
             <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
-                <!-- Timer -->
-                <div class="xl:col-span-2 bg-[#3a2359] p-8 rounded-2xl border border-purple-800 shadow-lg">
+                <!-- TIMER -->
+                <div
+                    class="xl:col-span-2 bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg">
 
-                    <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
 
                         <div>
-                            <h2 class="text-2xl font-bold">
+
+                            <h2 class="text-2xl font-bold tracking-tight">
                                 Pomodoro Inteligente
                             </h2>
 
-                            <p class="text-zinc-400">
+                            <p class="text-zinc-300">
                                 Sistema de foco adaptativo
                             </p>
+
                         </div>
 
-                        <span id="status" class="bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-sm">
+                        <span id="status"
+                            class="bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-full text-sm font-medium">
+
                             Pausado
+
                         </span>
 
                     </div>
 
-                    <!-- Timer -->
+                    <!-- MATÉRIA -->
+                    <div class="w-full max-w-md mb-8">
+
+                        <label class="block text-zinc-300 mb-2">
+                            Matéria Atual
+                        </label>
+
+                        <select id="currentSubject"
+                            class="w-full bg-zinc-950 border border-zinc-700 rounded-xl p-4 text-zinc-100 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+
+                            <option value="">
+                                Selecione uma matéria
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- TIMER -->
                     <div class="flex flex-col items-center justify-center py-10">
 
-                        <h1 id="timer" class="text-7xl font-bold text-emerald-400 mb-6">
+                        <h1 id="timer"
+                            class="text-8xl md:text-9xl tracking-tight font-bold text-emerald-400 mb-8">
+
                             25:00
+
                         </h1>
 
-                        <div class="flex gap-4 flex-wrap justify-center">
+                        <!-- BOTÕES -->
+                        <div class="flex gap-3 flex-wrap justify-center">
 
-                            <button onclick="startTimer()" class="bg-emerald-500 hover:bg-emerald-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+                            <!-- PRIMARY -->
+                            <button onclick="startTimer()"
+                                class="bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98]
+                                transition-all duration-200 text-black px-8 py-3 rounded-xl font-semibold shadow-lg shadow-emerald-500/20">
+
                                 Iniciar
+
                             </button>
 
-                            <button onclick="pauseTimer()" class="bg-yellow-500 hover:bg-yellow-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+                            <!-- SECONDARY -->
+                            <button onclick="pauseTimer()"
+                                class="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700
+                                transition-all duration-200 text-zinc-200 px-6 py-3 rounded-xl font-medium">
+
                                 Pausar
+
                             </button>
 
-                            <button onclick="resetTimer()" class="bg-red-500 hover:bg-red-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+                            <!-- GHOST -->
+                            <button onclick="resetTimer()"
+                                class="hover:bg-zinc-800 transition-all duration-200
+                                text-zinc-400 hover:text-zinc-200 px-6 py-3 rounded-xl font-medium">
+
                                 Resetar
+
                             </button>
 
                         </div>
+
                     </div>
 
                 </div>
 
                 <!-- IA -->
-                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
 
-                    <h2 class="text-2xl font-bold mb-2">
+                    <h2 class="text-2xl font-bold mb-2 tracking-tight">
                         IA de Ajuda
                     </h2>
 
-                    <p class="text-zinc-400 mb-6">
+                    <p class="text-zinc-300 mb-6">
                         Assistente anti-travamento
                     </p>
 
-                    <div id="aiMessage" class="bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-6">
+                    <div id="aiMessage"
+                        class="bg-zinc-950 border border-zinc-800 rounded-xl p-4 mb-6">
+
                         <p class="text-zinc-300">
                             Tudo certo por enquanto 🚀
                         </p>
+
                     </div>
 
-                    <input id="userProblem" type="text" placeholder="Descreva sua dificuldade..." class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-3 outline-none focus:border-emerald-400" />
+                    <input id="userProblem"
+                        type="text"
+                        placeholder="Descreva sua dificuldade..."
+                        class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-3 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
 
-                    <button onclick="askAI()" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 transition text-black font-semibold py-3 rounded-xl">
+                    <button onclick="askAI()"
+                        class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all duration-200 text-black font-semibold py-3 rounded-lg shadow-lg shadow-emerald-500/10">
+
                         Pedir ajuda
+
                     </button>
 
                 </div>
 
             </section>
 
-            <!-- Histórico -->
-            <section class="mt-8 bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+            <!-- HISTÓRICO -->
+            <section
+                class="mt-8 bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg">
 
                 <div class="flex items-center justify-between mb-6">
 
                     <div>
-                        <h2 class="text-2xl font-bold">
+
+                        <h2 class="text-2xl font-bold tracking-tight">
                             Histórico de Foco
                         </h2>
 
-                        <p class="text-zinc-400">
+                        <p class="text-zinc-300">
                             Sessões registradas
                         </p>
+
                     </div>
 
                 </div>
 
                 <div id="history" class="space-y-4">
 
-                    <div class="bg-[#2b1740] p-4 rounded-xl">
+                    <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-800">
                         Nenhuma sessão registrada ainda.
                     </div>
 
@@ -271,8 +343,81 @@
 
     </section>
 
+    <!-- TELA DE MATÉRIAS -->
+    <section id="subjectsScreen" class="hidden min-h-screen p-8">
+
+        <div class="max-w-5xl mx-auto">
+
+            <!-- VOLTAR -->
+            <div class="mb-6">
+
+                <button onclick="showDashboard()"
+                    class="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 transition px-5 py-3 rounded-xl text-zinc-200 font-medium">
+
+                    ← Voltar para Tela Inicial
+
+                </button>
+
+            </div>
+
+            <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+
+                <div>
+
+                    <h1 class="text-4xl font-bold tracking-tight">
+                        Matérias
+                    </h1>
+
+                    <p class="text-zinc-300">
+                        Controle de tempo por matéria
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- NOVA MATÉRIA -->
+            <div
+                class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg mb-8">
+
+                <h2 class="text-2xl font-bold mb-4">
+                    Nova Matéria
+                </h2>
+
+                <div class="flex gap-4 flex-wrap">
+
+                    <input id="newSubject"
+                        type="text"
+                        placeholder="Ex: Matemática"
+                        class="flex-1 min-w-[250px] bg-zinc-950 border border-zinc-700 rounded-xl p-4 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
+
+                    <button onclick="addSubject()"
+                        class="bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all duration-200 text-black px-6 py-3 rounded-xl font-semibold shadow-lg shadow-emerald-500/10">
+
+                        Adicionar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- LISTA -->
+            <div id="subjectsList" class="space-y-4">
+
+                <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+                    Nenhuma matéria adicionada ainda.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
     <!-- SCRIPT -->
     <script>
+
         // LOGIN
 
         let dailyGoalMinutes = 240;
@@ -283,6 +428,7 @@
                 document.getElementById("username").value;
 
             if (username.trim() === "") {
+
                 alert("Digite um usuário");
                 return;
             }
@@ -339,6 +485,15 @@
 
         function startTimer() {
 
+            const currentSubject =
+                document.getElementById("currentSubject").value;
+
+            if (!currentSubject) {
+
+                alert("Selecione uma matéria antes de iniciar.");
+                return;
+            }
+
             if (running) return;
 
             running = true;
@@ -347,7 +502,7 @@
                 "Em foco";
 
             document.getElementById("status").className =
-                "bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm";
+                "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-medium";
 
             timer = setInterval(() => {
 
@@ -364,6 +519,8 @@
                     sessions++;
 
                     focusMinutes += 25;
+
+                    registerStudyTime();
 
                     updateStats();
 
@@ -385,20 +542,17 @@
 
             travamentos++;
 
-            document.getElementById("travamentos").innerText =
-                travamentos;
-
             document.getElementById("status").innerText =
                 "Pausado";
 
             document.getElementById("status").className =
-                "bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-sm";
+                "bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-full text-sm font-medium";
 
             document.getElementById("aiMessage").innerHTML = `
-        <p class="text-zinc-300">
-          Você pausou a sessão. Tente dividir a tarefa em pequenas partes.
-        </p>
-      `;
+                <p class="text-zinc-300">
+                    Você pausou a sessão. Tente dividir a tarefa em pequenas partes.
+                </p>
+            `;
         }
 
         function resetTimer() {
@@ -415,7 +569,7 @@
                 "Resetado";
 
             document.getElementById("status").className =
-                "bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm";
+                "bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-full text-sm font-medium";
         }
 
         updateTimer();
@@ -456,10 +610,10 @@
             }
 
             document.getElementById("aiMessage").innerHTML = `
-        <p class="text-zinc-300">
-          ${response}
-        </p>
-      `;
+                <p class="text-zinc-300">
+                    ${response}
+                </p>
+            `;
         }
 
         // STATS
@@ -492,30 +646,196 @@
             const history =
                 document.getElementById("history");
 
+            const currentSubject =
+                document.getElementById("currentSubject").value;
+
+            if (
+                history.innerHTML.includes(
+                    "Nenhuma sessão registrada ainda."
+                )
+            ) {
+                history.innerHTML = "";
+            }
+
             const item =
                 document.createElement("div");
 
             item.className =
-                "bg-[#2b1740] p-4 rounded-xl flex items-center justify-between";
+                "bg-zinc-950 border border-zinc-800 p-4 rounded-xl flex items-center justify-between flex-wrap gap-4";
 
             item.innerHTML = `
-        <div>
-          <h3 class="font-semibold">
-            Sessão Pomodoro
-          </h3>
+                <div>
+                    <h3 class="font-semibold text-zinc-100">
+                        ${currentSubject}
+                    </h3>
 
-          <p class="text-zinc-400 text-sm">
-            25 minutos completos
-          </p>
-        </div>
+                    <p class="text-zinc-300 text-sm">
+                        Sessão Pomodoro • 25 minutos completos
+                    </p>
+                </div>
 
-        <span class="text-emerald-400 font-semibold">
-          Completo
-        </span>
-      `;
+                <span class="text-emerald-400 font-semibold">
+                    Completo
+                </span>
+            `;
 
             history.prepend(item);
         }
+
+        // MATÉRIAS
+
+        let subjects = [];
+
+        function addSubject() {
+
+            const input =
+                document.getElementById("newSubject");
+
+            const subjectName =
+                input.value.trim();
+
+            if (subjectName === "") {
+
+                alert("Digite o nome da matéria.");
+                return;
+            }
+
+            const exists =
+                subjects.find(
+                    s =>
+                        s.name.toLowerCase() ===
+                        subjectName.toLowerCase()
+                );
+
+            if (exists) {
+
+                alert("Essa matéria já existe.");
+                return;
+            }
+
+            subjects.push({
+                name: subjectName,
+                minutes: 0
+            });
+
+            input.value = "";
+
+            renderSubjects();
+            updateSubjectSelect();
+        }
+
+        function renderSubjects() {
+
+            const list =
+                document.getElementById("subjectsList");
+
+            list.innerHTML = "";
+
+            if (subjects.length === 0) {
+
+                list.innerHTML = `
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+                        Nenhuma matéria adicionada ainda.
+                    </div>
+                `;
+
+                return;
+            }
+
+            subjects.forEach(subject => {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "bg-zinc-900 p-6 rounded-2xl border border-zinc-800 shadow-lg flex items-center justify-between flex-wrap gap-4";
+
+                div.innerHTML = `
+                    <div>
+                        <h2 class="text-2xl font-bold text-zinc-100">
+                            ${subject.name}
+                        </h2>
+
+                        <p class="text-zinc-300">
+                            ${(subject.minutes / 60).toFixed(1)} horas estudadas
+                        </p>
+                    </div>
+
+                    <div class="text-emerald-400 text-3xl font-bold">
+                        ${subject.minutes}min
+                    </div>
+                `;
+
+                list.appendChild(div);
+            });
+        }
+
+        function updateSubjectSelect() {
+
+            const select =
+                document.getElementById("currentSubject");
+
+            select.innerHTML =
+                `<option value="">Selecione uma matéria</option>`;
+
+            subjects.forEach(subject => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value =
+                    subject.name;
+
+                option.innerText =
+                    subject.name;
+
+                select.appendChild(option);
+            });
+        }
+
+        function registerStudyTime() {
+
+            const currentSubject =
+                document.getElementById("currentSubject").value;
+
+            if (!currentSubject) return;
+
+            const subject =
+                subjects.find(
+                    s => s.name === currentSubject
+                );
+
+            if (!subject) return;
+
+            subject.minutes += 25;
+
+            renderSubjects();
+        }
+
+        // NAVEGAÇÃO
+
+        function showSubjects() {
+
+            document
+                .getElementById("dashboard")
+                .classList.add("hidden");
+
+            document
+                .getElementById("subjectsScreen")
+                .classList.remove("hidden");
+        }
+
+        function showDashboard() {
+
+            document
+                .getElementById("subjectsScreen")
+                .classList.add("hidden");
+
+            document
+                .getElementById("dashboard")
+                .classList.remove("hidden");
+        }
+
     </script>
 
 </body>
