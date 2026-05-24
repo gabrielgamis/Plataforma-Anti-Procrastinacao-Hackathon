@@ -60,10 +60,10 @@
 
 ## 4.1. Quem está fazendo o quê na equipe?
 
-- **Integrante A:** Desenvolvimento do front-end e interface visual
-- **Integrante B:** Lógica do sistema e funcionalidades em JavaScript
-- **Integrante C:** Pesquisa, organização da ideia e apresentação/pitch
-- **Integrante D:** Documentação, testes e validação do MVP
+- **Gabriel Alemdia Machado Gamis:** Liderança e desenvolvimento do front-end e interface visual e apresentação/pitch
+- **Mateus Alves Pinho de Souza:** Desenvolvimento de kanban no Trello e desenvolvimento da API de IA
+- **Mateus Manhães Cambraia:** Pesquisa, organização da ideia e organização do backlog do projeto
+
 
 ---
 
