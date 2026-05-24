@@ -10,10 +10,10 @@
 (6° Período)
 
 - **Link do Repositório (GitHub/GitLab):**  
-[(Link)](https://github.com/gabrielgamis/Plataforma-Anti-Prograstina-o-Hackathon)
+[(Link)](https://github.com/gabrielgamis/Plataforma-Anti-Procrastinacao-Hackathon)
 
 - **Link do Rascunho/Design (Figma/Lovable/Excalidraw):**  
-(Adicionar link)
+[(Link)](https://www.figma.com/site/FY2s5NtpLUWBP7CkitneqH/Untitled?node-id=0-1&t=hBRjgvFauRcpHciH-1)
 
 ---
 
