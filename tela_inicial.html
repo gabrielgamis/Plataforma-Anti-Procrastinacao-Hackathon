@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>FocusFlow MVP</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#2b1740] text-white min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-[#3a2359] border-b border-purple-900 px-8 py-4 flex items-center justify-between">
+
+        <div>
+            <h1 class="text-2xl font-bold">
+                FocusFlow
+            </h1>
+
+            <p class="text-sm text-zinc-300">
+                Plataforma Anti-Procrastinação
+            </p>
+        </div>
+
+        <button class="bg-emerald-500 hover:bg-emerald-400 transition px-5 py-2 rounded-xl text-black font-semibold">
+      Logout
+    </button>
+
+    </header>
+
+    <!-- Conteúdo -->
+    <main class="p-8">
+
+        <!-- Cards principais -->
+        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+
+            <!-- Card -->
+            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <p class="text-zinc-300 text-sm mb-2">
+                    Sessão Atual
+                </p>
+
+                <h2 class="text-4xl font-bold text-emerald-400">
+                    25:00
+                </h2>
+
+                <p class="mt-2 text-zinc-400">
+                    Pomodoro em andamento
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <p class="text-zinc-300 text-sm mb-2">
+                    Foco Hoje
+                </p>
+
+                <h2 class="text-4xl font-bold text-emerald-400">
+                    3h 12m
+                </h2>
+
+                <p class="mt-2 text-zinc-400">
+                    +28% que ontem
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <p class="text-zinc-300 text-sm mb-2">
+                    Travamentos Detectados
+                </p>
+
+                <h2 class="text-4xl font-bold text-yellow-400">
+                    4
+                </h2>
+
+                <p class="mt-2 text-zinc-400">
+                    IA sugeriu pausas
+                </p>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                <p class="text-zinc-300 text-sm mb-2">
+                    Meta Diária
+                </p>
+
+                <h2 class="text-4xl font-bold text-cyan-400">
+                    80%
+                </h2>
+
+                <!-- Barra -->
+                <div class="w-full bg-zinc-700 rounded-full h-3 mt-4">
+                    <div class="bg-cyan-400 h-3 rounded-full w-4/5"></div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Área principal -->
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+            <!-- Pomodoro -->
+            <div class="xl:col-span-2 bg-[#3a2359] p-8 rounded-2xl border border-purple-800 shadow-lg">
+
+                <div class="flex items-center justify-between mb-8">
+
+                    <div>
+                        <h2 class="text-2xl font-bold">
+                            Pomodoro Inteligente
+                        </h2>
+
+                        <p class="text-zinc-400">
+                            Sistema de foco adaptativo
+                        </p>
+                    </div>
+
+                    <span class="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm">
+            Em foco
+          </span>
+
+                </div>
+
+                <!-- Timer -->
+                <div class="flex flex-col items-center justify-center py-10">
+
+                    <h1 class="text-7xl font-bold text-emerald-400 mb-6">
+                        25:00
+                    </h1>
+
+                    <div class="flex gap-4">
+
+                        <button class="bg-emerald-500 hover:bg-emerald-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+              Iniciar
+            </button>
+
+                        <button class="bg-yellow-500 hover:bg-yellow-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+              Pausar
+            </button>
+
+                        <button class="bg-red-500 hover:bg-red-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+              Resetar
+            </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- IA -->
+            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+
+                <h2 class="text-2xl font-bold mb-2">
+                    IA de Ajuda
+                </h2>
+
+                <p class="text-zinc-400 mb-6">
+                    Assistente gradual anti-travamento
+                </p>
+
+                <!-- Mensagem -->
+                <div class="bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-4">
+                    <p class="text-zinc-300">
+                        Você está há 12 minutos sem interação.
+                    </p>
+                </div>
+
+                <div class="bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-6">
+                    <p class="text-zinc-300">
+                        Que tal dividir sua tarefa em pequenas etapas?
+                    </p>
+                </div>
+
+                <!-- Input -->
+                <input type="text" placeholder="Descreva sua dificuldade..." class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-3 outline-none focus:border-emerald-400" />
+
+                <button class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 transition text-black font-semibold py-3 rounded-xl">
+          Pedir ajuda
+        </button>
+
+            </div>
+
+        </section>
+
+        <!-- Histórico -->
+        <section class="mt-8 bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+
+            <div class="flex items-center justify-between mb-6">
+
+                <div>
+                    <h2 class="text-2xl font-bold">
+                        Histórico de Foco
+                    </h2>
+
+                    <p class="text-zinc-400">
+                        Últimas sessões registradas
+                    </p>
+                </div>
+
+                <button class="bg-zinc-700 hover:bg-zinc-600 transition px-4 py-2 rounded-xl">
+          Ver tudo
+        </button>
+
+            </div>
+
+            <!-- Tabela -->
+            <div class="space-y-4">
+
+                <div class="bg-[#2b1740] p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold">
+                            Estudo de Redes
+                        </h3>
+
+                        <p class="text-zinc-400 text-sm">
+                            50 minutos de foco
+                        </p>
+                    </div>
+
+                    <span class="text-emerald-400 font-semibold">
+            Completo
+          </span>
+                </div>
+
+                <div class="bg-[#2b1740] p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold">
+                            Desenvolvimento Frontend
+                        </h3>
+
+                        <p class="text-zinc-400 text-sm">
+                            25 minutos de foco
+                        </p>
+                    </div>
+
+                    <span class="text-yellow-400 font-semibold">
+            Interrompido
+          </span>
+                </div>
+
+                <div class="bg-[#2b1740] p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold">
+                            Exercícios
+                        </h3>
+
+                        <p class="text-zinc-400 text-sm">
+                            15 minutos de pausa ativa
+                        </p>
+                    </div>
+
+                    <span class="text-cyan-400 font-semibold">
+            Finalizado
+          </span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
