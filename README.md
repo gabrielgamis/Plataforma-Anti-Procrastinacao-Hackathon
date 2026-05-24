@@ -6,10 +6,11 @@
 
 - **Nome da Equipe:** FocusFlow
 - **Nome dos Integrantes e Períodos:**  
-(Gabriel Gamis + integrantes da equipe)
+(Gabriel Almeida Machado Gamis, Mateus Alves Pinho de Souza e Mateus Manhães Cambraia)
+(6° Período)
 
-- **Link do Repositório (GitHub/GitLab)::**  
-(Adicionar link)
+- **Link do Repositório (GitHub/GitLab):**  
+[(Adicionar link)](https://github.com/gabrielgamis/Plataforma-Anti-Prograstina-o-Hackathon)
 
 - **Link do Rascunho/Design (Figma/Lovable/Excalidraw):**  
 (Adicionar link)
@@ -117,10 +118,8 @@
 ## 7.1. Como será a estratégia de apresentação de vocês na segunda-feira?
 
 > A apresentação será dividida entre os integrantes:
->
 > - Introdução do problema da procrastinação
 > - Explicação da solução e diferencial do FocusFlow
 > - Demonstração prática do MVP funcionando ao vivo
 > - Explicação rápida das tecnologias utilizadas
->
 > Pretendemos abrir o sistema ao vivo durante a apresentação para mostrar o funcionamento do Pomodoro, das metas e da IA de ajuda gradual.
