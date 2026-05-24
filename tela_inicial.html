@@ -18,256 +18,505 @@
 
 <body class="bg-[#2b1740] text-white min-h-screen">
 
-    <!-- Navbar -->
-    <header class="bg-[#3a2359] border-b border-purple-900 px-8 py-4 flex items-center justify-between">
+    <!-- LOGIN -->
+    <section id="loginScreen" class="min-h-screen flex items-center justify-center p-6">
 
-        <div>
-            <h1 class="text-2xl font-bold">
+        <div class="bg-[#3a2359] w-full max-w-md p-8 rounded-3xl border border-purple-800 shadow-2xl">
+
+            <h1 class="text-4xl font-bold mb-2 text-center">
                 FocusFlow
             </h1>
 
-            <p class="text-sm text-zinc-300">
+            <p class="text-zinc-400 text-center mb-8">
                 Plataforma Anti-Procrastinação
             </p>
+
+            <!-- Usuário -->
+            <input id="username" type="text" placeholder="Usuário" class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-4 outline-none focus:border-emerald-400" />
+
+            <!-- Senha -->
+            <input id="password" type="password" placeholder="Senha" class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-6 outline-none focus:border-emerald-400" />
+
+            <!-- Meta -->
+            <div class="mb-6">
+
+                <label class="block text-zinc-300 mb-2">
+                    Qual sua meta diária de foco?
+                </label>
+
+                <select id="dailyGoal" class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-4 outline-none focus:border-emerald-400">
+                    <option value="60">1 hora</option>
+                    <option value="120">2 horas</option>
+                    <option value="180">3 horas</option>
+                    <option value="240" selected>4 horas</option>
+                    <option value="300">5 horas</option>
+                    <option value="360">6 horas</option>
+                </select>
+
+            </div>
+
+            <!-- Botão -->
+            <button onclick="login()" class="w-full bg-emerald-500 hover:bg-emerald-400 transition text-black font-bold py-4 rounded-xl">
+                Entrar
+            </button>
+
+            <p class="text-center text-zinc-500 mt-6 text-sm">
+                Login fake • nenhum dado é salvo
+            </p>
+
         </div>
 
-        <button class="bg-emerald-500 hover:bg-emerald-400 transition px-5 py-2 rounded-xl text-black font-semibold">
-      Logout
-    </button>
+    </section>
 
-    </header>
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="hidden">
 
-    <!-- Conteúdo -->
-    <main class="p-8">
+        <!-- Navbar -->
+        <header class="bg-[#3a2359] border-b border-purple-900 px-8 py-4 flex items-center justify-between">
 
-        <!-- Cards principais -->
-        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+            <div>
+                <h1 class="text-2xl font-bold">
+                    FocusFlow
+                </h1>
 
-            <!-- Card -->
-            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-                <p class="text-zinc-300 text-sm mb-2">
-                    Sessão Atual
-                </p>
-
-                <h2 class="text-4xl font-bold text-emerald-400">
-                    25:00
-                </h2>
-
-                <p class="mt-2 text-zinc-400">
-                    Pomodoro em andamento
+                <p class="text-sm text-zinc-300">
+                    Bem-vindo, <span id="userDisplay">Usuário</span>
                 </p>
             </div>
 
-            <!-- Card -->
-            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-                <p class="text-zinc-300 text-sm mb-2">
-                    Foco Hoje
-                </p>
+            <button onclick="logout()" class="bg-red-500 hover:bg-red-400 transition px-5 py-2 rounded-xl text-black font-semibold">
+                Logout
+            </button>
 
-                <h2 class="text-4xl font-bold text-emerald-400">
-                    3h 12m
-                </h2>
+        </header>
 
-                <p class="mt-2 text-zinc-400">
-                    +28% que ontem
-                </p>
-            </div>
+        <!-- Conteúdo -->
+        <main class="p-8">
 
-            <!-- Card -->
-            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-                <p class="text-zinc-300 text-sm mb-2">
-                    Travamentos Detectados
-                </p>
+            <!-- Cards -->
+            <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
 
-                <h2 class="text-4xl font-bold text-yellow-400">
-                    4
-                </h2>
+                <!-- Pomodoro -->
+                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                    <p class="text-zinc-300 text-sm mb-2">
+                        Sessão Atual
+                    </p>
 
-                <p class="mt-2 text-zinc-400">
-                    IA sugeriu pausas
-                </p>
-            </div>
+                    <h2 id="miniTimer" class="text-4xl font-bold text-emerald-400">
+                        25:00
+                    </h2>
 
-            <!-- Card -->
-            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-                <p class="text-zinc-300 text-sm mb-2">
-                    Meta Diária
-                </p>
-
-                <h2 class="text-4xl font-bold text-cyan-400">
-                    80%
-                </h2>
-
-                <!-- Barra -->
-                <div class="w-full bg-zinc-700 rounded-full h-3 mt-4">
-                    <div class="bg-cyan-400 h-3 rounded-full w-4/5"></div>
+                    <p class="mt-2 text-zinc-400">
+                        Pomodoro ativo
+                    </p>
                 </div>
-            </div>
 
-        </section>
+                <!-- Foco -->
+                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                    <p class="text-zinc-300 text-sm mb-2">
+                        Foco Hoje
+                    </p>
 
-        <!-- Área principal -->
-        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                    <h2 id="focusHours" class="text-4xl font-bold text-emerald-400">
+                        0h
+                    </h2>
 
-            <!-- Pomodoro -->
-            <div class="xl:col-span-2 bg-[#3a2359] p-8 rounded-2xl border border-purple-800 shadow-lg">
+                    <p class="mt-2 text-zinc-400">
+                        Tempo acumulado
+                    </p>
+                </div>
 
-                <div class="flex items-center justify-between mb-8">
+                <!-- Travamentos -->
+                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+                    <p class="text-zinc-300 text-sm mb-2">
+                        Travamentos Detectados
+                    </p>
+
+                    <h2 id="travamentos" class="text-4xl font-bold text-yellow-400">
+                        0
+                    </h2>
+
+                    <p class="mt-2 text-zinc-400">
+                        Sistema inteligente
+                    </p>
+                </div>
+
+                <!-- Meta -->
+                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+
+                    <p class="text-zinc-300 text-sm mb-2">
+                        Meta Diária
+                    </p>
+
+                    <p id="goalText" class="text-zinc-500 text-sm">
+                        0h / 4h
+                    </p>
+
+                    <h2 id="goal" class="text-4xl font-bold text-cyan-400">
+                        0%
+                    </h2>
+
+                    <div class="w-full bg-zinc-700 rounded-full h-3 mt-4">
+                        <div id="goalBar" class="bg-cyan-400 h-3 rounded-full w-0 transition-all duration-500"></div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Área principal -->
+            <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+                <!-- Timer -->
+                <div class="xl:col-span-2 bg-[#3a2359] p-8 rounded-2xl border border-purple-800 shadow-lg">
+
+                    <div class="flex items-center justify-between mb-8">
+
+                        <div>
+                            <h2 class="text-2xl font-bold">
+                                Pomodoro Inteligente
+                            </h2>
+
+                            <p class="text-zinc-400">
+                                Sistema de foco adaptativo
+                            </p>
+                        </div>
+
+                        <span id="status" class="bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-sm">
+                            Pausado
+                        </span>
+
+                    </div>
+
+                    <!-- Timer -->
+                    <div class="flex flex-col items-center justify-center py-10">
+
+                        <h1 id="timer" class="text-7xl font-bold text-emerald-400 mb-6">
+                            25:00
+                        </h1>
+
+                        <div class="flex gap-4 flex-wrap justify-center">
+
+                            <button onclick="startTimer()" class="bg-emerald-500 hover:bg-emerald-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+                                Iniciar
+                            </button>
+
+                            <button onclick="pauseTimer()" class="bg-yellow-500 hover:bg-yellow-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+                                Pausar
+                            </button>
+
+                            <button onclick="resetTimer()" class="bg-red-500 hover:bg-red-400 transition text-black px-6 py-3 rounded-xl font-semibold">
+                                Resetar
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- IA -->
+                <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+
+                    <h2 class="text-2xl font-bold mb-2">
+                        IA de Ajuda
+                    </h2>
+
+                    <p class="text-zinc-400 mb-6">
+                        Assistente anti-travamento
+                    </p>
+
+                    <div id="aiMessage" class="bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-6">
+                        <p class="text-zinc-300">
+                            Tudo certo por enquanto 🚀
+                        </p>
+                    </div>
+
+                    <input id="userProblem" type="text" placeholder="Descreva sua dificuldade..." class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-3 outline-none focus:border-emerald-400" />
+
+                    <button onclick="askAI()" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 transition text-black font-semibold py-3 rounded-xl">
+                        Pedir ajuda
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Histórico -->
+            <section class="mt-8 bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
+
+                <div class="flex items-center justify-between mb-6">
 
                     <div>
                         <h2 class="text-2xl font-bold">
-                            Pomodoro Inteligente
+                            Histórico de Foco
                         </h2>
 
                         <p class="text-zinc-400">
-                            Sistema de foco adaptativo
+                            Sessões registradas
                         </p>
                     </div>
 
-                    <span class="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm">
-            Em foco
-          </span>
-
                 </div>
 
-                <!-- Timer -->
-                <div class="flex flex-col items-center justify-center py-10">
+                <div id="history" class="space-y-4">
 
-                    <h1 class="text-7xl font-bold text-emerald-400 mb-6">
-                        25:00
-                    </h1>
-
-                    <div class="flex gap-4">
-
-                        <button class="bg-emerald-500 hover:bg-emerald-400 transition text-black px-6 py-3 rounded-xl font-semibold">
-              Iniciar
-            </button>
-
-                        <button class="bg-yellow-500 hover:bg-yellow-400 transition text-black px-6 py-3 rounded-xl font-semibold">
-              Pausar
-            </button>
-
-                        <button class="bg-red-500 hover:bg-red-400 transition text-black px-6 py-3 rounded-xl font-semibold">
-              Resetar
-            </button>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- IA -->
-            <div class="bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-
-                <h2 class="text-2xl font-bold mb-2">
-                    IA de Ajuda
-                </h2>
-
-                <p class="text-zinc-400 mb-6">
-                    Assistente gradual anti-travamento
-                </p>
-
-                <!-- Mensagem -->
-                <div class="bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-4">
-                    <p class="text-zinc-300">
-                        Você está há 12 minutos sem interação.
-                    </p>
-                </div>
-
-                <div class="bg-[#2b1740] border border-purple-900 rounded-xl p-4 mb-6">
-                    <p class="text-zinc-300">
-                        Que tal dividir sua tarefa em pequenas etapas?
-                    </p>
-                </div>
-
-                <!-- Input -->
-                <input type="text" placeholder="Descreva sua dificuldade..." class="w-full bg-[#2b1740] border border-purple-900 rounded-xl p-3 outline-none focus:border-emerald-400" />
-
-                <button class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 transition text-black font-semibold py-3 rounded-xl">
-          Pedir ajuda
-        </button>
-
-            </div>
-
-        </section>
-
-        <!-- Histórico -->
-        <section class="mt-8 bg-[#3a2359] p-6 rounded-2xl border border-purple-800 shadow-lg">
-
-            <div class="flex items-center justify-between mb-6">
-
-                <div>
-                    <h2 class="text-2xl font-bold">
-                        Histórico de Foco
-                    </h2>
-
-                    <p class="text-zinc-400">
-                        Últimas sessões registradas
-                    </p>
-                </div>
-
-                <button class="bg-zinc-700 hover:bg-zinc-600 transition px-4 py-2 rounded-xl">
-          Ver tudo
-        </button>
-
-            </div>
-
-            <!-- Tabela -->
-            <div class="space-y-4">
-
-                <div class="bg-[#2b1740] p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <h3 class="font-semibold">
-                            Estudo de Redes
-                        </h3>
-
-                        <p class="text-zinc-400 text-sm">
-                            50 minutos de foco
-                        </p>
+                    <div class="bg-[#2b1740] p-4 rounded-xl">
+                        Nenhuma sessão registrada ainda.
                     </div>
 
-                    <span class="text-emerald-400 font-semibold">
-            Completo
-          </span>
                 </div>
 
-                <div class="bg-[#2b1740] p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <h3 class="font-semibold">
-                            Desenvolvimento Frontend
-                        </h3>
+            </section>
 
-                        <p class="text-zinc-400 text-sm">
-                            25 minutos de foco
-                        </p>
-                    </div>
+        </main>
 
-                    <span class="text-yellow-400 font-semibold">
-            Interrompido
-          </span>
-                </div>
+    </section>
 
-                <div class="bg-[#2b1740] p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <h3 class="font-semibold">
-                            Exercícios
-                        </h3>
+    <!-- SCRIPT -->
+    <script>
+        // LOGIN
 
-                        <p class="text-zinc-400 text-sm">
-                            15 minutos de pausa ativa
-                        </p>
-                    </div>
+        let dailyGoalMinutes = 240;
 
-                    <span class="text-cyan-400 font-semibold">
-            Finalizado
-          </span>
-                </div>
+        function login() {
 
-            </div>
+            const username =
+                document.getElementById("username").value;
 
-        </section>
+            if (username.trim() === "") {
+                alert("Digite um usuário");
+                return;
+            }
 
-    </main>
+            dailyGoalMinutes =
+                parseInt(
+                    document.getElementById("dailyGoal").value
+                );
+
+            document
+                .getElementById("loginScreen")
+                .classList.add("hidden");
+
+            document
+                .getElementById("dashboard")
+                .classList.remove("hidden");
+
+            document.getElementById("userDisplay").innerText =
+                username;
+
+            updateStats();
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        // TIMER
+
+        let time = 25 * 60;
+        let timer;
+        let running = false;
+
+        let focusMinutes = 0;
+        let sessions = 0;
+        let travamentos = 0;
+
+        function updateTimer() {
+
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+
+            const formatted =
+                String(minutes).padStart(2, "0") +
+                ":" +
+                String(seconds).padStart(2, "0");
+
+            document.getElementById("timer").innerText =
+                formatted;
+
+            document.getElementById("miniTimer").innerText =
+                formatted;
+        }
+
+        function startTimer() {
+
+            if (running) return;
+
+            running = true;
+
+            document.getElementById("status").innerText =
+                "Em foco";
+
+            document.getElementById("status").className =
+                "bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm";
+
+            timer = setInterval(() => {
+
+                time--;
+
+                updateTimer();
+
+                if (time <= 0) {
+
+                    clearInterval(timer);
+
+                    running = false;
+
+                    sessions++;
+
+                    focusMinutes += 25;
+
+                    updateStats();
+
+                    addHistory();
+
+                    alert("Pomodoro finalizado!");
+
+                    resetTimer();
+                }
+
+            }, 1000);
+        }
+
+        function pauseTimer() {
+
+            clearInterval(timer);
+
+            running = false;
+
+            travamentos++;
+
+            document.getElementById("travamentos").innerText =
+                travamentos;
+
+            document.getElementById("status").innerText =
+                "Pausado";
+
+            document.getElementById("status").className =
+                "bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-sm";
+
+            document.getElementById("aiMessage").innerHTML = `
+        <p class="text-zinc-300">
+          Você pausou a sessão. Tente dividir a tarefa em pequenas partes.
+        </p>
+      `;
+        }
+
+        function resetTimer() {
+
+            clearInterval(timer);
+
+            running = false;
+
+            time = 25 * 60;
+
+            updateTimer();
+
+            document.getElementById("status").innerText =
+                "Resetado";
+
+            document.getElementById("status").className =
+                "bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm";
+        }
+
+        updateTimer();
+
+        // IA
+
+        function askAI() {
+
+            const problem =
+                document.getElementById("userProblem").value.toLowerCase();
+
+            let response = "";
+
+            if (problem.includes("cansado")) {
+
+                response =
+                    "Faça uma pausa curta de 5 minutos e tome água.";
+
+            } else if (problem.includes("distra")) {
+
+                response =
+                    "Tente remover notificações e fechar abas desnecessárias.";
+
+            } else if (problem.includes("ans")) {
+
+                response =
+                    "Respire fundo e tente focar apenas na próxima pequena etapa.";
+
+            } else if (problem.includes("trava")) {
+
+                response =
+                    "Comece pela parte mais simples da tarefa.";
+
+            } else {
+
+                response =
+                    "Divida sua atividade em pequenas metas e avance aos poucos.";
+            }
+
+            document.getElementById("aiMessage").innerHTML = `
+        <p class="text-zinc-300">
+          ${response}
+        </p>
+      `;
+        }
+
+        // STATS
+
+        function updateStats() {
+
+            document.getElementById("focusHours").innerText =
+                (focusMinutes / 60).toFixed(1) + "h";
+
+            const goalPercent =
+                Math.min(
+                    (focusMinutes / dailyGoalMinutes) * 100,
+                    100
+                );
+
+            document.getElementById("goal").innerText =
+                Math.floor(goalPercent) + "%";
+
+            document.getElementById("goalBar").style.width =
+                goalPercent + "%";
+
+            document.getElementById("goalText").innerText =
+                `${(focusMinutes / 60).toFixed(1)}h / ${(dailyGoalMinutes / 60)}h`;
+        }
+
+        // HISTÓRICO
+
+        function addHistory() {
+
+            const history =
+                document.getElementById("history");
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "bg-[#2b1740] p-4 rounded-xl flex items-center justify-between";
+
+            item.innerHTML = `
+        <div>
+          <h3 class="font-semibold">
+            Sessão Pomodoro
+          </h3>
+
+          <p class="text-zinc-400 text-sm">
+            25 minutos completos
+          </p>
+        </div>
+
+        <span class="text-emerald-400 font-semibold">
+          Completo
+        </span>
+      `;
+
+            history.prepend(item);
+        }
+    </script>
 
 </body>
 
