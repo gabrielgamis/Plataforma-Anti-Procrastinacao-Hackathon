@@ -10,7 +10,7 @@
 (6° Período)
 
 - **Link do Repositório (GitHub/GitLab):**  
-[(Adicionar link)](https://github.com/gabrielgamis/Plataforma-Anti-Prograstina-o-Hackathon)
+[(Link)](https://github.com/gabrielgamis/Plataforma-Anti-Prograstina-o-Hackathon)
 
 - **Link do Rascunho/Design (Figma/Lovable/Excalidraw):**  
 (Adicionar link)
