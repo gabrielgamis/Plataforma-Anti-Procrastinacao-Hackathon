@@ -578,42 +578,47 @@
 
         function askAI() {
 
-            const problem =
-                document.getElementById("userProblem").value.toLowerCase();
+            const problemInput = document.getElementById("userProblem");
+            const problem = problemInput.value.trim();
 
-            let response = "";
-
-            if (problem.includes("cansado")) {
-
-                response =
-                    "Faça uma pausa curta de 5 minutos e tome água.";
-
-            } else if (problem.includes("distra")) {
-
-                response =
-                    "Tente remover notificações e fechar abas desnecessárias.";
-
-            } else if (problem.includes("ans")) {
-
-                response =
-                    "Respire fundo e tente focar apenas na próxima pequena etapa.";
-
-            } else if (problem.includes("trava")) {
-
-                response =
-                    "Comece pela parte mais simples da tarefa.";
-
-            } else {
-
-                response =
-                    "Divida sua atividade em pequenas metas e avance aos poucos.";
+            if (problem === "") {
+                document.getElementById("aiMessage").innerHTML = `
+                    <p class="text-amber-400">
+                        Descreva sua dificuldade primeiro ✍️
+                    </p>
+                `;
+                return;
             }
 
+            // loading
             document.getElementById("aiMessage").innerHTML = `
-                <p class="text-zinc-300">
-                    ${response}
+                <p class="text-zinc-400 animate-pulse">
+                    Analisando... 🤔
                 </p>
             `;
+
+            fetch('/api/ajuda', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dificuldade: problem })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("aiMessage").innerHTML = `
+                    <p class="text-emerald-400 leading-relaxed">
+                        "${data.texto}"
+                    </p>
+                `;
+                problemInput.value = "";
+            })
+            .catch(err => {
+                document.getElementById("aiMessage").innerHTML = `
+                    <p class="text-red-400">
+                        Erro ao conectar com a IA. Verifique se o servidor está rodando.
+                    </p>
+                `;
+                console.error(err);
+            });
         }
 
         // STATS
