@@ -183,10 +183,9 @@
             <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
                 <!-- TIMER -->
-                <div
-                    class="xl:col-span-2 bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg">
+                <div class="xl:col-span-2 bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg flex flex-col items-center">
 
-                    <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+                    <div class="w-full flex items-center justify-between mb-8 flex-wrap gap-4">
 
                         <div>
 
@@ -210,9 +209,9 @@
                     </div>
 
                     <!-- MATÉRIA -->
-                    <div class="w-full max-w-md mb-8">
+                    <div class="w-full max-w-md mb-8 mx-auto">
 
-                        <label class="block text-zinc-300 mb-2">
+                        <label class="block text-zinc-300 mb-2 text-center">
                             Matéria Atual
                         </label>
 
@@ -389,7 +388,7 @@
                     <input id="newSubject"
                         type="text"
                         placeholder="Ex: Matemática"
-                        class="flex-1 min-w-[250px] bg-zinc-950 border border-zinc-700 rounded-xl p-4 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
+                        class="flex-1 min-w- bg-zinc-950 border border-zinc-700 rounded-xl p-4 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition" />
 
                     <button onclick="addSubject()"
                         class="bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] transition-all duration-200 text-black px-6 py-3 rounded-xl font-semibold shadow-lg shadow-emerald-500/10">
@@ -439,12 +438,12 @@
                 );
 
             document
-                .getElementById("loginScreen")
-                .classList.add("hidden");
+               .getElementById("loginScreen")
+               .classList.add("hidden");
 
             document
-                .getElementById("dashboard")
-                .classList.remove("hidden");
+               .getElementById("dashboard")
+               .classList.remove("hidden");
 
             document.getElementById("userDisplay").innerText =
                 username;
@@ -458,10 +457,12 @@
 
         // TIMER
 
-        let time = 25 * 60;
+        const FOCUS_TIME = 25 * 60; // 25min
+        const BREAK_TIME = 5 * 60; // 5min
+        let time = FOCUS_TIME;
         let timer;
         let running = false;
-
+        let isBreak = false;
         let focusMinutes = 0;
         let sessions = 0;
         let travamentos = 0;
@@ -485,11 +486,10 @@
 
         function startTimer() {
 
-            const currentSubject =
-                document.getElementById("currentSubject").value;
+            const currentSubject = document.getElementById("currentSubject").value;
 
-            if (!currentSubject) {
-
+            // Só exige matéria se não for descanso
+            if (!isBreak &&!currentSubject) {
                 alert("Selecione uma matéria antes de iniciar.");
                 return;
             }
@@ -498,39 +498,47 @@
 
             running = true;
 
-            document.getElementById("status").innerText =
-                "Em foco";
-
-            document.getElementById("status").className =
-                "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-medium";
+            if (isBreak) {
+                document.getElementById("status").innerText = "Descanso";
+                document.getElementById("status").className = "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-4 py-2 rounded-full text-sm font-medium";
+            } else {
+                document.getElementById("status").innerText = "Em foco";
+                document.getElementById("status").className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-sm font-medium";
+            }
 
             timer = setInterval(() => {
-
                 time--;
-
                 updateTimer();
 
                 if (time <= 0) {
-
                     clearInterval(timer);
-
                     running = false;
 
-                    sessions++;
+                    if (isBreak) {
+                        // Acabou o descanso -> volta pro foco
+                        alert("Descanso finalizado! Bora focar mais 25min 🚀");
+                        isBreak = false;
+                        time = FOCUS_TIME;
+                        document.getElementById("timer").classList.remove("text-cyan-400");
+                        document.getElementById("timer").classList.add("text-emerald-400");
+                    } else {
+                        // Acabou o foco -> vai pro descanso
+                        sessions++;
+                        focusMinutes += 25;
+                        registerStudyTime();
+                        updateStats();
+                        addHistory();
+                        alert("Pomodoro finalizado! Hora do descanso de 5min ☕");
+                        isBreak = true;
+                        time = BREAK_TIME;
+                        document.getElementById("timer").classList.remove("text-emerald-400");
+                        document.getElementById("timer").classList.add("text-cyan-400");
+                    }
 
-                    focusMinutes += 25;
-
-                    registerStudyTime();
-
-                    updateStats();
-
-                    addHistory();
-
-                    alert("Pomodoro finalizado!");
-
-                    resetTimer();
+                    updateTimer();
+                    document.getElementById("status").innerText = "Pausado";
+                    document.getElementById("status").className = "bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-full text-sm font-medium";
                 }
-
             }, 1000);
         }
 
@@ -556,20 +564,18 @@
         }
 
         function resetTimer() {
-
             clearInterval(timer);
-
             running = false;
+            isBreak = false;
+            time = FOCUS_TIME;
 
-            time = 25 * 60;
+            document.getElementById("timer").classList.remove("text-cyan-400");
+            document.getElementById("timer").classList.add("text-emerald-400");
 
             updateTimer();
 
-            document.getElementById("status").innerText =
-                "Resetado";
-
-            document.getElementById("status").className =
-                "bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-full text-sm font-medium";
+            document.getElementById("status").innerText = "Resetado";
+            document.getElementById("status").className = "bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-full text-sm font-medium";
         }
 
         updateTimer();
@@ -584,7 +590,7 @@
             if (problem === "") {
                 document.getElementById("aiMessage").innerHTML = `
                     <p class="text-amber-400">
-                        Descreva sua dificuldade primeiro ✍️
+                        Descreva sua dificuldade primeiro ✍
                     </p>
                 `;
                 return;
@@ -602,8 +608,8 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ dificuldade: problem })
             })
-            .then(res => res.json())
-            .then(data => {
+           .then(res => res.json())
+           .then(data => {
                 document.getElementById("aiMessage").innerHTML = `
                     <p class="text-emerald-400 leading-relaxed">
                         "${data.texto}"
@@ -611,7 +617,7 @@
                 `;
                 problemInput.value = "";
             })
-            .catch(err => {
+           .catch(err => {
                 document.getElementById("aiMessage").innerHTML = `
                     <p class="text-red-400">
                         Erro ao conectar com a IA. Verifique se o servidor está rodando.
@@ -822,23 +828,23 @@
         function showSubjects() {
 
             document
-                .getElementById("dashboard")
-                .classList.add("hidden");
+               .getElementById("dashboard")
+               .classList.add("hidden");
 
             document
-                .getElementById("subjectsScreen")
-                .classList.remove("hidden");
+               .getElementById("subjectsScreen")
+               .classList.remove("hidden");
         }
 
         function showDashboard() {
 
             document
-                .getElementById("subjectsScreen")
-                .classList.add("hidden");
+               .getElementById("subjectsScreen")
+               .classList.add("hidden");
 
             document
-                .getElementById("dashboard")
-                .classList.remove("hidden");
+               .getElementById("dashboard")
+               .classList.remove("hidden");
         }
 
     </script>

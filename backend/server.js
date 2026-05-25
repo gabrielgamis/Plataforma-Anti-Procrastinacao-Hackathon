@@ -8,6 +8,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('../'));
 
+// ROTA ADICIONADA: redireciona / pra /tela_inicial.html
+app.get('/', (req, res) => {
+    res.redirect('/tela_inicial.html');
+});
+
 app.post('/api/ajuda', async (req, res) => {
   try {
     const { dificuldade = "Estou travado" } = req.body;
@@ -22,7 +27,7 @@ app.post('/api/ajuda', async (req, res) => {
       },
       body: JSON.stringify({
         model: 'llama-3.1-8b-instant',
-        messages: [{ role: 'user',    content: `Você é um coach anti-procrastinação. NÃO dê a solução. Dê apenas 1 dica leve, em 2 frases, para quem disse: "${dificuldade}". Foque em dividir em micro-passos.` }],
+        messages: [{ role: 'user', content: `Você é um coach anti-procrastinação. NÃO dê a solução. Dê apenas 1 dica leve, em 2 frases, para quem disse: "${dificuldade}". Foque em dividir em micro-passos.` }],
         max_tokens: 200
       })
     });
