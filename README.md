@@ -39,10 +39,7 @@
 > - Timer Pomodoro inteligente
 > - Meta diária personalizada
 > - Histórico de sessões
-> - Monitoramento de pausas e travamentos
 > - IA de ajuda gradual
->
-> Durante o uso, o usuário acompanha seu progresso em tempo real e recebe sugestões para melhorar o foco.
 
 ## 3.2. Quais são as principais tecnologias, linguagens ou ferramentas que decidiram usar?
 
@@ -62,7 +59,7 @@
 
 - **Gabriel Almeida Machado Gamis:** Liderança e desenvolvimento do front-end e interface visual e apresentação/pitch
 - **Mateus Alves Pinho de Souza:** Desenvolvimento de kanban no Trello e desenvolvimento da API de IA
-- **Mateus Manhães Cambraia:** Pesquisa, organização da ideia e organização do backlog do projeto
+- **Mateus Manhães Cambraia:** Pesquisa, organização do backlog do projeto e desenvolvimento dos slides
 
 
 ---
@@ -80,28 +77,17 @@
 > Atualmente o sistema já possui:
 >
 > - Tela de login fake
-> - Dashboard funcional
 > - Timer Pomodoro funcionando
 > - Sistema de meta diária
 > - Barra de progresso dinâmica
 > - Histórico de sessões
-> - Simulação de IA anti-travamento
+> - IA para ajudar a estudar
 > - Interface responsiva
 
 ## 5.3. O que foi ou será "Mockado" (dados fictícios/estáticos)?
 
-> Algumas partes da IA são simuladas com respostas pré-definidas para demonstrar o conceito do produto.  
-> O login também é fictício e não utiliza banco de dados real.  
+> O login é fictício e não utiliza banco de dados real.  
 > Os dados de produtividade ainda são armazenados apenas localmente.
-
-## 5.4. O que ainda falta finalizar obrigatoriamente para a entrega?
-
-> - Melhorar o design final
-> - Adicionar mais interações da IA
-> - Refinar responsividade
-> - Melhorar feedback visual do Pomodoro
-> - Finalizar apresentação/pitch
-> - Organizar repositório e documentação
 
 ---
 
